@@ -1,0 +1,12 @@
+h1 {
+  margin: 10px;
+  text-align: center;
+}
+
+.cardProducts {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-flow: row wrap;
+  gap: 1rem;
+}
