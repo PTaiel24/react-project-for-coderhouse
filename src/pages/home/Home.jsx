@@ -1,9 +1,10 @@
+import { useContext } from "react";
 import CardProduct from "../../components/cardProduct/CardProduct";
-import FetchProducts from "../../services/FetchProducts";
 import styles from "./Home.module.css";
+import { ProductContext } from "../../context/ProductContext";
 
 const Home = () => {
-  const { products, isLoading, isError } = FetchProducts();
+  const { products, isLoading, isError } = useContext(ProductContext);
 
   if (isLoading) return <h1>Cargando productos...</h1>;
 

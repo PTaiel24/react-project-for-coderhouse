@@ -1,0 +1,21 @@
+article {
+  margin: 30px;
+}
+
+.section_product {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 30px;
+}
+
+.image_product {
+  width: 42rem;
+  border: 5px solid #ccc;
+}
+
+.div_info_product {
+  border: 1px solid #ccc;
+  width: 33%;
+  margin-right: 10rem;
+}
