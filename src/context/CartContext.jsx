@@ -28,6 +28,10 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  const vaciarCarrito = () => {
+    setCart([]);
+  };
+
   const incrementarProducto = (product) => {
     setCart((cartActual) => {
       return cartActual.map((item) =>
@@ -56,6 +60,7 @@ export const CartProvider = ({ children }) => {
     eliminarDelCarrito,
     incrementarProducto,
     decrementarProducto,
+    vaciarCarrito,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

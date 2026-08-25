@@ -1,0 +1,17 @@
+.cartContent {
+  position: relative;
+}
+
+.totalQuantity {
+  font-size: 15px;
+  color: white;
+
+  position: absolute;
+  top: 1px;
+  right: -5px;
+
+  background-color: red;
+  border-radius: 50%;
+  width: 20px;
+  text-align: center;
+}

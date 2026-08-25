@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { useParams } from "react-router";
 import { ProductContext } from "../../context/ProductContext";
-import styles from "./PageProduct.module.css";
+import styles from "./ProductDetail.module.css";
 import ButtonCart from "../../components/buttonCart/ButtonCart";
 
-const PageProduct = () => {
+const ProductDetail = () => {
   const { id } = useParams();
   const { products, isLoading } = useContext(ProductContext);
 
@@ -34,4 +34,4 @@ const PageProduct = () => {
   );
 };
 
-export default PageProduct;
+export default ProductDetail;

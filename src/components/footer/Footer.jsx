@@ -60,7 +60,7 @@ const Footer = () => {
         </ul>
       </nav>
 
-      <section>
+      <section className={styles.sectionFooter}>
         <ul>
           <li>
             <a href="./pages/contacto.html">About & Contact</a>

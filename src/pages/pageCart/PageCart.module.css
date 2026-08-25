@@ -14,11 +14,35 @@ article {
   grid-row: 2/3;
 }
 
-article section {
-  width: 1;
-}
-
-aside {
+.asideCompra {
   grid-column: 3/4;
   grid-row: 2/3;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 20rem;
+
+  position: absolute;
+  top: 10rem;
+  right: 15%;
+
+  border: 2px solid #ccc;
+}
+
+.asideCompra section h2 {
+  width: 20rem;
+  border-bottom: 2px dotted #ccc;
+  text-align: center;
+  padding: 10px;
+}
+
+.resumenCompra {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  gap: 1rem;
+
+  padding: 10px;
 }

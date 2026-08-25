@@ -1,0 +1,18 @@
+.buttonCart {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 10px;
+}
+
+.buttonDelete {
+  justify-content: center;
+}
+
+.buttonCart button {
+  width: 2.5rem;
+}
+
+.buttonAddToCart {
+  padding: 10px;
+}

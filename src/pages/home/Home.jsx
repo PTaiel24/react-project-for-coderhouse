@@ -12,7 +12,7 @@ const Home = () => {
 
   return (
     <>
-      <h1>Empezando a desarrollar el projecto final de CoderHouse</h1>
+      <h1>Empezando a desarrollar el proyecto final de CoderHouse</h1>
       <article className={styles.cardProducts}>
         {products.map((product) => {
           return <CardProduct key={product.id} product={product} />;

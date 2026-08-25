@@ -16,7 +16,7 @@ footer {
   height: auto;
 }
 
-section {
+.sectionFooter {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -25,7 +25,7 @@ section {
   text-align: center;
 }
 
-section ul {
+.sectionFooter ul {
   display: flex;
   flex-flow: column nowrap;
 
@@ -35,12 +35,12 @@ section ul {
   list-style: none;
 }
 
-section p {
+.sectionFooter p {
   grid-column: 1/2;
   grid-row: 2/3;
 }
 
-section a {
+.sectionFooter a {
   grid-column: 2/3;
   grid-row: 1/3;
   text-decoration: none;
