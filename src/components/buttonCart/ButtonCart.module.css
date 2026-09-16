@@ -1,18 +1,59 @@
-.buttonCart {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  padding: 10px;
+.container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.45rem;
 }
 
-.buttonDelete {
-  justify-content: center;
+.addButton {
+  width: 100%;
+  min-height: 42px;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  font-weight: 700;
+  transition: 0.2s ease;
+}
+
+.addButton {
+  color: #fff;
+  background: #176b5b;
+  border: 1px solid #176b5b;
+}
+
+.addButton:hover:not(:disabled) {
+  background: #125849;
+}
+
+.addButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.buttonCart {
+  display: grid;
+  grid-template-columns: 36px 1fr 36px;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .buttonCart button {
-  width: 2.5rem;
+  height: 34px;
+  color: #176b5b;
+  background: #eef6f3;
+  border: 1px solid #c9ded8;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 800;
 }
 
-.buttonAddToCart {
-  padding: 10px;
+.buttonCart button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.buttonCart p {
+  color: #24302d;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 800;
 }

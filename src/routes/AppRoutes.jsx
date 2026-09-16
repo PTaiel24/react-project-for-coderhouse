@@ -1,23 +1,26 @@
 import { Routes, Route } from "react-router";
-import About from "../pages/about/About";
+import { OrderProvider } from "../context/OrderContext.jsx";
 import Home from "../pages/home/Home";
-import Contact from "../pages/contact/Contact.jsx";
-import ProductDetail from "../pages/productDetail/ProductDetail.jsx";
-import { ProductProvider } from "../context/ProductContext.jsx";
+import AboutContact from "../pages/about&contact/AboutContact.jsx";
 import PageCart from "../pages/pageCart/PageCart.jsx";
+import PurchaseForm from "../components/purchaseForm/PurchaseForm.jsx";
+import PaymentForm from "../components/paymentForm/PaymentForm.jsx";
+import ItemDetailContainer from "../components/itemDetailContainer/ItemDetailContainer.jsx";
 
 const AppRoutes = () => {
   return (
-    <ProductProvider>
+    <OrderProvider>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/About" element={<About />} />
-        <Route path="/Contact" element={<Contact />} />
-        <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/category/:category" element={<Home />} />
+        <Route path="/about&contact" element={<AboutContact />} />
+        <Route path="/product/:id" element={<ItemDetailContainer />} />
         <Route path="/cart" element={<PageCart />} />
-        <Route path="*" element={<h1>Pagina no encontrada...</h1>} />
+        <Route path="/cart/purchase-form" element={<PurchaseForm />} />
+        <Route path="/cart/payment-form" element={<PaymentForm />} />
+        <Route path="*" element={<h1>Página no encontrada...</h1>} />
       </Routes>
-    </ProductProvider>
+    </OrderProvider>
   );
 };
 

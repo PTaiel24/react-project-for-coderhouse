@@ -2,53 +2,104 @@ import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import CardProduct from "../../components/cardProduct/CardProduct";
 import styles from "./PageCart.module.css";
-import ButtonCart from "../../components/buttonCart/ButtonCart";
+import { Link } from "react-router";
+import CartItem from "../../components/cartItem/CartItem";
 
 const PageCart = () => {
   const { cart, vaciarCarrito } = useContext(CartContext);
-  let totalQuantity = 0;
-  cart.map((item) => {
-    totalQuantity += item.quantity;
-  });
 
-  let totalPrice = 0;
-  cart.map((item) => {
-    totalPrice += item.price * item.quantity;
-  });
+  const totalPrice = parseFloat(
+    cart
+      .reduce((acc, item) => {
+        if (item.inSale.offer) {
+          const priceOffer =
+            item.price - item.price * (item.inSale.discountPercentage / 100);
+          return acc + priceOffer * item.quantity;
+        }
+        return acc + item.price * item.quantity;
+      }, 0)
+      .toFixed(2),
+  );
+
+  const evaluarPrice = (item) => {
+    if (item.inSale.offer) {
+      const price =
+        item.price - item.price * (item.inSale.discountPercentage / 100);
+      return parseFloat(price.toFixed(2));
+    }
+    return parseFloat(item.price.toFixed(2));
+  };
+
+  if (cart.length === 0) {
+    return (
+      <section className={styles.cartPage}>
+        <h1 className={styles.pageTitle}>Mi carrito</h1>
+        <section className={styles.zonaCompra}>
+          <article className={styles.emptyCart}>
+            <div>
+              <h2>El carrito se encuentra vacío</h2>
+              <p>Agregá productos desde el catálogo para comenzar tu compra.</p>
+            </div>
+          </article>
+
+          <aside className={styles.asideCompra}>
+            <h2 className={styles.asideTitle}>Resumen de compra</h2>
+            <section className={styles.resumenCompra}>
+              <h3>Cantidad de productos: 0</h3>
+              <h4 className={styles.total}>Total a pagar: $0.00</h4>
+              <button className={styles.checkoutButton} disabled>
+                Continuar compra
+              </button>
+            </section>
+          </aside>
+        </section>
+      </section>
+    );
+  }
 
   return (
-    <section className={styles.zona_compra}>
-      <h1>Zona de compra</h1>
-      <article>
-        {cart.map((item) => {
-          return (
-            <CardProduct key={item.id} product={item}>
-              <ButtonCart product={item} />
-            </CardProduct>
-          );
-        })}
-        <button onClick={() => vaciarCarrito()}>Vaciar Carrito</button>
-      </article>
-      <aside className={styles.asideCompra}>
-        <section>
-          <h2>Pagar Productos</h2>
-        </section>
-        <section className={styles.resumenCompra}>
-          <h3>Cantidad de productos: {cart.length}</h3>
-          <ul>
-            {cart.map((item) => {
-              return (
-                <li key={item.id}>
-                  {item.title}: {item.quantity * item.price}
-                </li>
-              );
-            })}
-          </ul>
+    <section className={styles.cartPage}>
+      <h1 className={styles.pageTitle}>Mi carrito</h1>
 
-          <h4>Total a pagar: {totalPrice}</h4>
-          <button>Continuar Compra</button>
-        </section>
-      </aside>
+      <section className={styles.zonaCompra}>
+        <article className={styles.productList}>
+          {cart.map((item) => (
+            <CartItem key={item.id} item={item} />
+          ))}
+        </article>
+
+        <aside className={styles.asideCompra}>
+          <h2 className={styles.asideTitle}>Resumen de compra</h2>
+          <section className={styles.resumenCompra}>
+            <h3>
+              Cantidad de unidades:{" "}
+              {cart.reduce((acc, item) => acc + item.quantity, 0)}
+            </h3>
+
+            <ul>
+              {cart.map((item) => (
+                <li key={item.id}>
+                  {item.title}: ${evaluarPrice(item)} x {item.quantity}
+                </li>
+              ))}
+            </ul>
+
+            <h4 className={styles.total}>
+              Total a pagar: ${totalPrice.toFixed(2)}
+            </h4>
+
+            <Link to="/cart/purchase-form">
+              <button className={styles.checkoutButton}>
+                Continuar compra
+              </button>
+            </Link>
+          </section>
+        </aside>
+      </section>
+
+      <button className={styles.clearButton} onClick={vaciarCarrito}>
+        Vaciar carrito
+      </button>
     </section>
   );
 };

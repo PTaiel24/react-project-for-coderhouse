@@ -1,29 +1,28 @@
-import { useState, useEffect } from "react";
+import { addDoc, collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase/firebaseConfig";
 
-const PRODUCT_URL = "https://dummyjson.com/products";
+export async function FetchProducts() {
+  const productsCollection = collection(db, "products");
+  const productsSnapshot = await getDocs(productsCollection);
 
-const FetchProducts = () => {
-  const [products, setProducts] = useState([]);
-  const [isError, setIsError] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  return productsSnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+}
 
-  useEffect(() => {
-    fetch(PRODUCT_URL)
-      .then((response) => response.json())
-      .then((data) => {
-        setTimeout(() => {}, 2000);
-        const { products } = data;
-        setProducts(products);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        setTimeout(() => {}, 2000);
-        setIsError(error);
-        setIsLoading(false);
-      });
-  }, []);
+export async function CreateSells(sell) {
+  const sellsCollection = collection(db, "sells");
 
-  return { isError, isLoading, products };
-};
+  const sellData = {
+    ...sell,
+    status: "approved",
+  };
 
-export default FetchProducts;
+  const newSell = await addDoc(sellsCollection, sellData);
+
+  return {
+    id: newSell.id,
+    ...sellData,
+  };
+}

@@ -1,0 +1,145 @@
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.pageTitle {
+  margin-bottom: 1.5rem;
+  color: #24302d;
+  text-align: center;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.formCard {
+  padding: 1.5rem;
+  background: #fff;
+  border: 1px solid #e2ddd2;
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(30, 42, 70, 0.06);
+}
+
+.form {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.fieldset {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 0;
+  border: 0;
+}
+
+.field,
+.fieldset label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  color: #4f5a56;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.input,
+.select {
+  width: 100%;
+  padding: 0.75rem 0.85rem;
+  color: #24302d;
+  background: #fff;
+  border: 1px solid #cfc9bc;
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus,
+.select:focus {
+  border-color: #176b5b;
+  box-shadow: 0 0 0 3px rgba(91, 75, 219, 0.12);
+}
+
+.addressFields {
+  display: grid;
+  grid-template-columns: 1fr 150px;
+  gap: 1rem;
+  padding: 0;
+  border: 0;
+}
+
+.asideCompra {
+  position: sticky;
+  top: 95px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e2ddd2;
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(30, 42, 70, 0.07);
+}
+
+.asideTitle {
+  padding: 1rem 1.25rem;
+  color: #fff;
+  background: #176b5b;
+}
+
+.resumenCompra {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem;
+}
+
+.resumenCompra ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding-left: 1.1rem;
+  color: #69736f;
+  font-size: 0.88rem;
+}
+
+.total {
+  padding-top: 1rem;
+  border-top: 1px solid #e2ddd2;
+  color: #176b5b;
+  font-size: 1.2rem;
+}
+
+.payButton {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  color: #fff;
+  background: #176b5b;
+  border: 0;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.payButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .asideCompra {
+    position: static;
+  }
+}
+
+@media (max-width: 600px) {
+  .fieldset,
+  .addressFields {
+    grid-template-columns: 1fr;
+  }
+}

@@ -6,6 +6,10 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
   const agregarAlCarrito = (product) => {
+    const existe = cart.find((item) => item.id === product.id);
+
+    if (existe) return incrementarProducto(product);
+
     setCart((cartActual) => {
       return [
         ...cartActual,
@@ -15,8 +19,12 @@ export const CartProvider = ({ children }) => {
           description: product.description,
           images: [...product.images],
           price: product.price,
-          discount: 5,
+          inSale: {
+            offer: product.inSale.offer,
+            discountPercentage: product.inSale.discountPercentage,
+          },
           quantity: 1,
+          stock: product.stock,
         },
       ];
     });

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import styles from "./ButtonCart.module.css";
 
@@ -12,30 +12,42 @@ const ButtonCart = ({ product }) => {
   } = useContext(CartContext);
 
   const item = cart.find((item) => item.id === product.id);
-  if (!item)
-    return (
-      <div className={styles.buttonAddToCart}>
-        <button onClick={() => agregarAlCarrito(product)}>
-          Agregar al Carrito
-        </button>
-      </div>
-    );
 
   return (
-    <>
-      <div className={styles.buttonCart}>
-        <button onClick={() => decrementarProducto(product)}>-</button>
-
-        <p>{item.quantity}</p>
-
-        <button onClick={() => incrementarProducto(product)}>+</button>
-      </div>
-      <div className={styles.buttonDelete}>
-        <button onClick={() => eliminarDelCarrito(product)}>
-          Eliminar del Carrito
+    <div className={styles.container}>
+      {!item && (
+        <button
+          className={styles.addButton}
+          disabled={product.stock === 0 || item?.quantity >= product.stock}
+          onClick={() => agregarAlCarrito(product)}
+        >
+          {product.stock === 0
+            ? "Sin stock"
+            : item?.quantity >= product.stock
+              ? "Stock máximo"
+              : "Agregar"}
         </button>
-      </div>
-    </>
+      )}
+
+      {item && (
+        <div className={styles.buttonCart}>
+          <button
+            onClick={() => decrementarProducto(product)}
+            aria-label="Disminuir cantidad"
+          >
+            -
+          </button>
+          <p>{item.quantity}</p>
+          <button
+            onClick={() => incrementarProducto(product)}
+            disabled={item.quantity >= product.stock}
+            aria-label="Aumentar cantidad"
+          >
+            +
+          </button>
+        </div>
+      )}
+    </div>
   );
 };
 

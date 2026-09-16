@@ -1,19 +1,18 @@
-import imgCartWidget from "../../assets/icons/carrito-de-compras.webp";
+import imgCartWidget from "../../assets/iconos/carrito-de-compras.webp";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import styles from "./CartWidget.module.css";
 
 const CartWidget = () => {
   const { cart } = useContext(CartContext);
-  let totalQuantity = 0;
-  cart.map((qty) => (totalQuantity += qty.quantity));
+  let totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
     <div className={styles.cartContent}>
       <img
         src={imgCartWidget}
         alt="shopping cart image"
-        style={{ width: "32px" }}
+        className={styles.cartIcon}
       />
       {totalQuantity > 0 && (
         <div className={styles.totalQuantity}>{totalQuantity}</div>

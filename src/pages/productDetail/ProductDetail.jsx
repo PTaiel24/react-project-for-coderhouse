@@ -6,31 +6,51 @@ import ButtonCart from "../../components/buttonCart/ButtonCart";
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const { products, isLoading } = useContext(ProductContext);
+  const { products, isLoading, isError } = useContext(ProductContext);
 
-  if (isLoading) return <h1>Cargando producto...</h1>;
+  if (isLoading) return <p className={styles.status}>Cargando producto...</p>;
+  if (isError) return <p className={styles.status}>Error al cargar el producto.</p>;
 
-  const product = products.find((product) => product.id === Number(id));
+  const product = products.find((product) => product.id === id);
 
-  if (!product) return <h1>Producto no encontrado</h1>;
+  if (!product) return <p className={styles.status}>Producto no encontrado.</p>;
+
+  const priceOffer = () => {
+    if (product.inSale.offer) {
+      const price =
+        product.price -
+        product.price * (product.inSale.discountPercentage / 100);
+      return (
+        <div className={styles.priceBox}>
+          <del className={styles.oldPrice}>${product.price.toFixed(2)}</del>
+          <h2 className={styles.price}>${price.toFixed(2)}</h2>
+        </div>
+      );
+    }
+    return (
+      <div className={styles.priceBox}>
+        <h2 className={styles.price}>${product.price.toFixed(2)}</h2>
+      </div>
+    );
+  };
 
   return (
-    <article>
-      <section className={styles.section_product}>
+    <section className={styles.productPage}>
+      <section className={styles.sectionProduct}>
         <img
           src={product.images[0]}
-          alt={`Product Image ${product.title}`}
-          className={styles.image_product}
+          alt={`Imagen de ${product.title}`}
+          className={styles.imageProduct}
         />
-        <div className={styles.div_info_product}>
-          <h1>{product.title}</h1>
-          <p>{product.description}</p>
-          <span>${product.price}</span>
 
-          <ButtonCart product={product} key={product.id} />
-        </div>
+        <article className={styles.divInfoProduct}>
+          <h1>{product.title}</h1>
+          <p className={styles.description}>{product.description}</p>
+          {priceOffer()}
+          <ButtonCart product={product} />
+        </article>
       </section>
-    </article>
+    </section>
   );
 };
 

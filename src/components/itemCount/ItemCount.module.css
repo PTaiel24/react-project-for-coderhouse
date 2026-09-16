@@ -1,0 +1,70 @@
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  width: 100%;
+}
+
+.addButton,
+.buttonDelete {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.addButton {
+  color: #fff;
+  background: #176b5b;
+  border: 1px solid #176b5b;
+}
+
+.addButton:hover:not(:disabled) {
+  background: #125849;
+}
+
+.addButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.buttonCart {
+  display: grid;
+  grid-template-columns: 42px 1fr 42px;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.buttonCart button {
+  height: 38px;
+  color: #176b5b;
+  background: #eef6f3;
+  border: 1px solid #c9ded8;
+  border-radius: 9px;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.buttonCart button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.buttonCart p {
+  color: #24302d;
+  text-align: center;
+  font-weight: 800;
+}
+
+.buttonDelete {
+  color: #b84f39;
+  background: #fff3ef;
+  border: 1px solid #f0c8bd;
+  font-size: 0.84rem;
+}
+
+.buttonDelete:hover {
+  background: #ffe9e3;
+}

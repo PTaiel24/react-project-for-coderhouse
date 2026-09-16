@@ -1,17 +1,39 @@
 .cartContent {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #eef6f3;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.cartContent:hover {
+  transform: translateY(-2px);
+  background: #e6e3ff;
+}
+
+.cartIcon {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
 }
 
 .totalQuantity {
-  font-size: 15px;
-  color: white;
-
   position: absolute;
-  top: 1px;
+  top: -5px;
   right: -5px;
-
-  background-color: red;
-  border-radius: 50%;
-  width: 20px;
-  text-align: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: #ef476f;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 800;
 }
